@@ -64,4 +64,3 @@ typings/
 *.tsbuildinfo
 
 # Ignore docker volume data
-/volumes/**
