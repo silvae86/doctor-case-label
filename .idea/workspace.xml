@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="489339fd-79d3-4659-be0a-a0ecf69bff5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/volumes/data/mongo/diagnostic.data/metrics.interim" beforeDir="false" afterPath="$PROJECT_DIR$/volumes/data/mongo/diagnostic.data/metrics.interim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/volumes/data/mongo/journal/WiredTigerLog.0000000002" beforeDir="false" afterPath="$PROJECT_DIR$/volumes/data/mongo/journal/WiredTigerLog.0000000002" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,12 +24,15 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1fV0BlvXNuGawqIEandKgArLCBM" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -66,12 +67,15 @@
       <updated>1596287819468</updated>
       <workItem from="1596287821481" duration="2538000" />
       <workItem from="1596290387410" duration="924000" />
-      <workItem from="1596291338385" duration="3005000" />
+      <workItem from="1596291338385" duration="3113000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="817" y="449" key="#ESLint" timestamp="1596290346039">
