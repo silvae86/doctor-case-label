@@ -23,10 +23,18 @@ export async function givenEmptyDatabase() {
   await doctorRepository.deleteAll();
 }
 
-async function getObjectsFromTestData (key: string, parseFunction: (dataObject: Partial<Model>) => object) {
-  const fileContents = await fs.promises.readFile('../fixtures/data/example.json', {encoding: 'utf8'});
+async function getObjectsFromTestData(
+  key: string,
+  parseFunction: (dataObject: Partial<Model>) => object,
+) {
+  const fileContents = await fs.promises.readFile(
+    '../fixtures/data/example.json',
+    {encoding: 'utf8'},
+  );
   const json = JSON.parse(fileContents);
-  const allRecords : DataObject<Model>[] = json['models'][key].map(parseFunction);
+  const allRecords: DataObject<Model>[] = json['models'][key].map(
+    parseFunction,
+  );
   return allRecords;
 }
 
@@ -43,7 +51,7 @@ export function givenDoctorData(data?: Partial<Doctor>) {
 }
 
 export async function givenDoctors() {
-  return new DoctorRepository(testdb).createAll(await getObjectsFromTestData('Doctor', givenDoctorData));
+  return new DoctorRepository(testdb).createAll(
+    await getObjectsFromTestData('Doctor', givenDoctorData),
+  );
 }
-
-

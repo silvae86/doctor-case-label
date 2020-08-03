@@ -1,17 +1,14 @@
-import {ApplicationConfig, DoctorCaseLabelApplication} from './application';
+import {ApplicationConfig} from './application';
+import {ExpressServer} from './server';
 
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new DoctorCaseLabelApplication(options);
-  await app.boot();
-  await app.start();
-
-  const url = app.restServer.url;
-  console.log(`Server is running at ${url}`);
-  console.log(`Try ${url}/ping`);
-
-  return app;
+  const server = new ExpressServer(options);
+  await server.boot();
+  await server.start();
+  console.log('Server is running at http://127.0.0.1:3000');
+  return server.lbApp;
 }
 
 if (require.main === module) {
@@ -30,6 +27,8 @@ if (require.main === module) {
         // useful when used with OpenAPI-to-GraphQL to locate your application
         setServersFromRequest: true,
       },
+      // Use the LB4 application as a route. It should not be listening.
+      listenOnStart: false,
     },
   };
   main(config).catch(err => {

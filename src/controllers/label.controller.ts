@@ -61,13 +61,13 @@ export class LabelController {
   constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
 
   // Map to `POST /label`
-  @post('/label/:caseId', {
+  @post('/label/{caseId}', {
     responses: {
       '200': LABEL_RESPONSE,
     },
     requestBody: {
-      content: LABEL_REQUEST_BODY
-    }
+      content: LABEL_REQUEST_BODY,
+    },
   })
   label(): object {
     return {

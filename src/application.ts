@@ -24,8 +24,6 @@ export class DoctorCaseLabelApplication extends BootMixin(
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
 
-    
-
     // Customize @loopback/rest-explorer configuration here
     this.configure(RestExplorerBindings.COMPONENT).to({
       path: '/explorer',

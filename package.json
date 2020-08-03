@@ -13,7 +13,7 @@
     "node": ">=10.16"
   },
   "scripts": {
-    "build": "lb-tsc",
+    "build": "lb-tsc --copy-resources",
     "build:watch": "lb-tsc --watch",
     "lint": "npm run prettier:check && npm run eslint",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
@@ -58,13 +58,16 @@
     "@loopback/rest-explorer": "^2.2.7",
     "@loopback/service-proxy": "^2.3.5",
     "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
     "loopback-connector-mongodb": "^5.3.0",
+    "p-event": "^4.2.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@loopback/build": "^6.1.1",
     "@loopback/eslint-config": "^8.0.4",
     "@loopback/testlab": "^3.2.1",
+    "@types/express": "^4.17.7",
     "@types/node": "^10.17.27",
     "eslint": "^7.5.0",
     "mocha": "^8.1.0",

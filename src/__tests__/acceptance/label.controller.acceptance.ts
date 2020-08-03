@@ -15,8 +15,6 @@ describe('PingController', () => {
   });
 
   it('invokes POST /label', async () => {
-
-
     const res = await client.post('/label/?msg=world').expect(200);
     expect(res.body).to.containEql({greeting: 'Hello from LoopBack'});
   });
