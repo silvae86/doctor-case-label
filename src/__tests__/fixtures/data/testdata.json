@@ -2,507 +2,519 @@
   "ids": {
     "Doctor": 3,
     "MedicalCase": 4,
-    "Condition": 122
+    "Condition": 123
   },
   "models": {
-    "Doctor": {
-      "1": "{\"firstName\":\"Joe\",\"surname\":\"Smith\",\"id\":1}",
-      "2": "{\"firstName\":\"João\",\"surname\":\"Rocha da Silva\",\"id\":2}"
-    },
-    "MedicalCase": {
-      "1": "{\"ehr\":\"Patient  is an 45 year old  female.    Chief Complaint:  Problem    HPI  states that about one month ago she woke up with redness and swelling to her left eye.  She went to see an ophthalmologist who prescribed her naphazoline.  She states that this relieves the redness only temporarily.  She also states that this morning she awoke with more crusting to the left eye.  The eye is not particularly itchy, but seems more irritated today.  She has not had any sick contacts.          Review of Systems   Constitutional: Negative for fever.   Eyes: Positive for discharge and redness. Negative for blurred vision, double vision and photophobia.   Skin: Negative for itching.   Neurological: Positive for headaches.         Objective:     BP 100/69  -Strict ER precautions reviewed with patient should symptoms persist or worsen (specific signs reviewed verbally).  Good communication established and plan agreed upon by patient.\",\"id\":1}",
-      "2": "{\"ehr\":\"Patient  is an 42 year old  male.    Chief Complaint: Establish Care and Physical    HPI      Hemorrhoids  Bothersome  Comes and goes  Especially with sedentary life style  Recently worse  Couple nights where almost wakes patient up  Gets intermittently constipated  High fiber diet    Patient Active Problem    Diagnoses Code\n -  Hemorrhoids 455.6E       No outpatient prescriptions have been marked as taking for the  encounter (Office Visit) with ,  C.     Allergies   Allergen Reactions\n -  Pcn (Penicillins)\n -  Morphine        No past medical history on file.  Past Surgical History   Procedure Date\n -  Hx knee surgery      Arthroscopy age 15 for torn meniscus       Family History   Problem Relation  of Onset\n -  Cancer Mother      Breast\n -  Hypertension Mother\n -  Hypertension Father      History   Substance Use Topics\n -  Smoking status: Never Smoker\n -  Smokeless tobacco: Not on file\",\"id\":2}",
-      "3": "{\"ehr\":\"Patient presents with Flank Pain. The patient is a 51-year-old female, no significant past medical history, presents to the emergency department with left-sided flank pain ongoing ×1 month now with abdominal pain. The pain is intermittent, but has been worsening. She reports new onset nausea, vomiting, diarrhea for the last 2 days. She reports multiple episodes of nonbloody emesis starting yesterday. She has also had multiple episodes of nonbloody diarrhea. She has gone to see her primary care doctor twice since symptoms began. She was found to have mildly elevated creatinine and was referred to a nephrologist. However, the nephrologist is not willing to see her until . The patient feels she cannot wait that long especially in light of these new symptoms. She then followed up with her primary care doctor again and he prescribed Zofran and loperamide but offered her no other solutions. The pain has since increased as well. She denies any fevers, chills. She denies urinary symptoms including burning with urination, frequency, hematuria.\",\"id\":3}"
-    },
-    "Condition": {
-      "1": {
+    "Doctor": [
+      {
+        "firstName": "João",
+        "surname": "Silva"
+      },
+      {
+        "firstName": "Joe",
+        "surname": "Smith"
+      }
+    ],
+    "MedicalCase": [
+      {
+        "ehr": "Patient  is an 45 year old  female.    Chief Complaint:  Problem    HPI  states that about one month ago she woke up with redness and swelling to her left eye.  She went to see an ophthalmologist who prescribed her naphazoline.  She states that this relieves the redness only temporarily.  She also states that this morning she awoke with more crusting to the left eye.  The eye is not particularly itchy, but seems more irritated today.  She has not had any sick contacts.          Review of Systems   Constitutional: Negative for fever.   Eyes: Positive for discharge and redness. Negative for blurred vision, double vision and photophobia.   Skin: Negative for itching.   Neurological: Positive for headaches.         Objective:     BP 100/69  -Strict ER precautions reviewed with patient should symptoms persist or worsen (specific signs reviewed verbally).  Good communication established and plan agreed upon by patient."
+      },
+      {
+        "ehr": "Patient  is an 42 year old  male.    Chief Complaint: Establish Care and Physical    HPI      Hemorrhoids  Bothersome  Comes and goes  Especially with sedentary life style  Recently worse  Couple nights where almost wakes patient up  Gets intermittently constipated  High fiber diet    Patient Active Problem    Diagnoses Code\n -  Hemorrhoids 455.6E       No outpatient prescriptions have been marked as taking for the  encounter (Office Visit) with ,  C.     Allergies   Allergen Reactions\n -  Pcn (Penicillins)\n -  Morphine        No past medical history on file.  Past Surgical History   Procedure Date\n -  Hx knee surgery      Arthroscopy age 15 for torn meniscus       Family History   Problem Relation  of Onset\n -  Cancer Mother      Breast\n -  Hypertension Mother\n -  Hypertension Father      History   Substance Use Topics\n -  Smoking status: Never Smoker\n -  Smokeless tobacco: Not on file"
+      },
+      {
+        "ehr": "  Patient presents with Flank Pain. The patient is a 51-year-old female, no significant past medical history, presents to the emergency department with left-sided flank pain ongoing ×1 month now with abdominal pain. The pain is intermittent, but has been worsening. She reports new onset nausea, vomiting, diarrhea for the last 2 days. She reports multiple episodes of nonbloody emesis starting yesterday. She has also had multiple episodes of nonbloody diarrhea. She has gone to see her primary care doctor twice since symptoms began. She was found to have mildly elevated creatinine and was referred to a nephrologist. However, the nephrologist is not willing to see her until . The patient feels she cannot wait that long especially in light of these new symptoms. She then followed up with her primary care doctor again and he prescribed Zofran and loperamide but offered her no other solutions. The pain has since increased as well. She denies any fevers, chills. She denies urinary symptoms including burning with urination, frequency, hematuria."
+      }
+    ],
+    "Condition": [
+      {
         "code": "A09",
         "description": "Infectious gastroenteritis and colitis, unspecified"
       },
-      "2": {
+      {
         "code": "A64",
         "description": "Unspecified sexually transmitted disease"
       },
-      "3": {
+      {
         "code": "B300",
         "description": "Keratoconjunctivitis due to adenovirus"
       },
-      "4": {
+      {
         "code": "B302",
         "description": "Viral pharyngoconjunctivitis"
       },
-      "5": {
+      {
         "code": "B308",
         "description": "Other viral conjunctivitis"
       },
-      "6": {
+      {
         "code": "B309",
         "description": "Viral conjunctivitis, unspecified"
       },
-      "7": {
+      {
         "code": "B373",
         "description": "Candidiasis of vulva and vagina"
       },
-      "8": {
+      {
         "code": "B9789",
         "description": "Other viral agents as the cause of diseases classified elsewhere"
       },
-      "9": {
+      {
         "code": "E860",
         "description": "Dehydration"
       },
-      "10": {
+      {
         "code": "F340",
         "description": "Cyclothymic disorder"
       },
-      "11": {
+      {
         "code": "F341",
         "description": "Dysthymic disorder"
       },
-      "12": {
+      {
         "code": "F39",
         "description": "Unspecified mood [affective] disorder"
       },
-      "13": {
+      {
         "code": "F411",
         "description": "Generalized anxiety disorder"
       },
-      "14": {
+      {
         "code": "F418",
         "description": "Other specified anxiety disorders"
       },
-      "15": {
+      {
         "code": "F419",
         "description": "Anxiety disorder, unspecified"
       },
-      "16": {
+      {
         "code": "F4321",
         "description": "Adjustment disorder with depressed mood"
       },
-      "17": {
+      {
         "code": "G43001",
         "description": "Migraine without aura, not intractable, with status migrainosus"
       },
-      "18": {
+      {
         "code": "G43009",
         "description": "Migraine without aura, not intractable, without status migrainosus"
       },
-      "19": {
+      {
         "code": "G43019",
         "description": "Migraine without aura, intractable, without status migrainosus"
       },
-      "20": {
+      {
         "code": "G43501",
         "description": "Persistent migraine aura without cerebral infarction, not intractable, with status migrainosus"
       },
-      "21": {
+      {
         "code": "G43509",
         "description": "Persistent migraine aura without cerebral infarction, not intractable, without status migrainosus"
       },
-      "22": {
+      {
         "code": "G43519",
         "description": "Persistent migraine aura without cerebral infarction, intractable, without status migrainosus"
       },
-      "23": {
+      {
         "code": "G43701",
         "description": "Chronic migraine without aura, not intractable, with status migrainosus"
       },
-      "24": {
+      {
         "code": "G43709",
         "description": "Chronic migraine without aura, not intractable, without status migrainosus"
       },
-      "25": {
+      {
         "code": "G43711",
         "description": "Chronic migraine without aura, intractable, with status migrainosus"
       },
-      "26": {
+      {
         "code": "G43719",
         "description": "Chronic migraine without aura, intractable, without status migrainosus"
       },
-      "27": {
+      {
         "code": "G43809",
         "description": "Other migraine, not intractable, without status migrainosus"
       },
-      "28": {
+      {
         "code": "G43811",
         "description": "Other migraine, intractable, with status migrainosus"
       },
-      "29": {
+      {
         "code": "G43819",
         "description": "Other migraine, intractable, without status migrainosus"
       },
-      "30": {
+      {
         "code": "G43829",
         "description": "Menstrual migraine, not intractable, without status migrainosus"
       },
-      "31": {
+      {
         "code": "G43909",
         "description": "Migraine, unspecified, not intractable, without status migrainosus"
       },
-      "32": {
+      {
         "code": "G43911",
         "description": "Migraine, unspecified, intractable, with status migrainosus"
       },
-      "33": {
+      {
         "code": "G43919",
         "description": "Migraine, unspecified, intractable, without status migrainosus"
       },
-      "34": {
+      {
         "code": "G44209",
         "description": "Tension-type headache, unspecified, not intractable"
       },
-      "35": {
+      {
         "code": "G44219",
         "description": "Episodic tension-type headache, not intractable"
       },
-      "36": {
+      {
         "code": "G4700",
         "description": "Insomnia, unspecified"
       },
-      "37": {
+      {
         "code": "G4701",
         "description": "Insomnia due to medical condition"
       },
-      "38": {
+      {
         "code": "G5600",
         "description": "Carpal tunnel syndrome, unspecified upper limb"
       },
-      "39": {
+      {
         "code": "H10029",
         "description": "Other mucopurulent conjunctivitis, unspecified eye"
       },
-      "40": {
+      {
         "code": "H1033",
         "description": "Unspecified acute conjunctivitis, bilateral"
       },
-      "41": {
+      {
         "code": "H1044",
         "description": "Vernal conjunctivitis"
       },
-      "42": {
+      {
         "code": "H1045",
         "description": "Other chronic allergic conjunctivitis"
       },
-      "43": {
+      {
         "code": "H10509",
         "description": "Unspecified blepharoconjunctivitis, unspecified eye"
       },
-      "44": {
+      {
         "code": "H10819",
         "description": "Pingueculitis, unspecified eye"
       },
-      "45": {
+      {
         "code": "H1089",
         "description": "Other conjunctivitis"
       },
-      "46": {
+      {
         "code": "H109",
         "description": "Unspecified conjunctivitis"
       },
-      "47": {
+      {
         "code": "H6020",
         "description": "Malignant otitis externa, unspecified ear"
       },
-      "48": {
+      {
         "code": "H60339",
         "description": "Swimmer's ear, unspecified ear"
       },
-      "49": {
+      {
         "code": "H60399",
         "description": "Other infective otitis externa, unspecified ear"
       },
-      "50": {
+      {
         "code": "H6500",
         "description": "Acute serous otitis media, unspecified ear"
       },
-      "51": {
+      {
         "code": "H65119",
         "description": "Acute and subacute allergic otitis media (mucoid) (sanguinous) (serous), unspecified ear"
       },
-      "52": {
+      {
         "code": "H65199",
         "description": "Other acute nonsuppurative otitis media, unspecified ear"
       },
-      "53": {
+      {
         "code": "H6520",
         "description": "Chronic serous otitis media, unspecified ear"
       },
-      "54": {
+      {
         "code": "H65499",
         "description": "Other chronic nonsuppurative otitis media, unspecified ear"
       },
-      "55": {
+      {
         "code": "H6590",
         "description": "Unspecified nonsuppurative otitis media, unspecified ear"
       },
-      "56": {
+      {
         "code": "H66009",
         "description": "Acute suppurative otitis media without spontaneous rupture of ear drum, unspecified ear"
       },
-      "57": {
+      {
         "code": "H66019",
         "description": "Acute suppurative otitis media with spontaneous rupture of ear drum, unspecified ear"
       },
-      "58": {
+      {
         "code": "H663X9",
         "description": "Other chronic suppurative otitis media, unspecified ear"
       },
-      "59": {
+      {
         "code": "H6640",
         "description": "Suppurative otitis media, unspecified, unspecified ear"
       },
-      "60": {
+      {
         "code": "H6690",
         "description": "Otitis media, unspecified, unspecified ear"
       },
-      "61": {
+      {
         "code": "J00",
         "description": "Acute nasopharyngitis [common cold]"
       },
-      "62": {
+      {
         "code": "J0100",
         "description": "Acute maxillary sinusitis, unspecified"
       },
-      "63": {
+      {
         "code": "J0110",
         "description": "Acute frontal sinusitis, unspecified"
       },
-      "64": {
+      {
         "code": "J0130",
         "description": "Acute sphenoidal sinusitis, unspecified"
       },
-      "65": {
+      {
         "code": "J0140",
         "description": "Acute pansinusitis, unspecified"
       },
-      "66": {
+      {
         "code": "J0190",
         "description": "Acute sinusitis, unspecified"
       },
-      "67": {
+      {
         "code": "J029",
         "description": "Acute pharyngitis, unspecified"
       },
-      "68": {
+      {
         "code": "J060",
         "description": "Acute laryngopharyngitis"
       },
-      "69": {
+      {
         "code": "J069",
         "description": "Acute upper respiratory infection, unspecified"
       },
-      "70": {
+      {
         "code": "J209",
         "description": "Acute bronchitis, unspecified"
       },
-      "71": {
+      {
         "code": "J301",
         "description": "Allergic rhinitis due to pollen"
       },
-      "72": {
+      {
         "code": "J3081",
         "description": "Allergic rhinitis due to animal (cat) (dog) hair and dander"
       },
-      "73": {
+      {
         "code": "J36",
         "description": "Peritonsillar abscess"
       },
-      "74": {
+      {
         "code": "J40",
         "description": "Bronchitis, not specified as acute or chronic"
       },
-      "75": {
+      {
         "code": "J411",
         "description": "Mucopurulent chronic bronchitis"
       },
-      "76": {
+      {
         "code": "J42",
         "description": "Unspecified chronic bronchitis"
       },
-      "77": {
+      {
         "code": "J45901",
         "description": "Unspecified asthma with (acute) exacerbation"
       },
-      "78": {
+      {
         "code": "J45902",
         "description": "Unspecified asthma with status asthmaticus"
       },
-      "79": {
+      {
         "code": "K210",
         "description": "Gastro-esophageal reflux disease with esophagitis"
       },
-      "80": {
+      {
         "code": "K219",
         "description": "Gastro-esophageal reflux disease without esophagitis"
       },
-      "81": {
+      {
         "code": "K2900",
         "description": "Acute gastritis without bleeding"
       },
-      "82": {
+      {
         "code": "K2920",
         "description": "Alcoholic gastritis without bleeding"
       },
-      "83": {
+      {
         "code": "K2960",
         "description": "Other gastritis without bleeding"
       },
-      "84": {
+      {
         "code": "K5900",
         "description": "Constipation, unspecified"
       },
-      "85": {
+      {
         "code": "K5901",
         "description": "Slow transit constipation"
       },
-      "86": {
+      {
         "code": "K5902",
         "description": "Outlet dysfunction constipation"
       },
-      "87": {
+      {
         "code": "K649",
         "description": "Unspecified hemorrhoids"
       },
-      "88": {
+      {
         "code": "K8019",
         "description": "Calculus of gallbladder with other cholecystitis with obstruction"
       },
-      "89": {
+      {
         "code": "K8020",
         "description": "Calculus of gallbladder without cholecystitis without obstruction"
       },
-      "90": {
+      {
         "code": "K8021",
         "description": "Calculus of gallbladder without cholecystitis with obstruction"
       },
-      "91": {
+      {
         "code": "K8042",
         "description": "Calculus of bile duct with acute cholecystitis without obstruction"
       },
-      "92": {
+      {
         "code": "K8050",
         "description": "Calculus of bile duct without cholangitis or cholecystitis without obstruction"
       },
-      "93": {
+      {
         "code": "K8051",
         "description": "Calculus of bile duct without cholangitis or cholecystitis with obstruction"
       },
-      "94": {
+      {
         "code": "L240",
         "description": "Irritant contact dermatitis due to detergents"
       },
-      "95": {
+      {
         "code": "L242",
         "description": "Irritant contact dermatitis due to solvents"
       },
-      "96": {
+      {
         "code": "L250",
         "description": "Unspecified contact dermatitis due to cosmetics"
       },
-      "97": {
+      {
         "code": "L251",
         "description": "Unspecified contact dermatitis due to drugs in contact with skin"
       },
-      "98": {
+      {
         "code": "L253",
         "description": "Unspecified contact dermatitis due to other chemical products"
       },
-      "99": {
+      {
         "code": "L255",
         "description": "Unspecified contact dermatitis due to plants, except food"
       },
-      "100": {
+      {
         "code": "L259",
         "description": "Unspecified contact dermatitis, unspecified cause"
       },
-      "101": {
+      {
         "code": "M25539",
         "description": "Pain in unspecified wrist"
       },
-      "102": {
+      {
         "code": "M5430",
         "description": "Sciatica, unspecified side"
       },
-      "103": {
+      {
         "code": "N730",
         "description": "Acute parametritis and pelvic cellulitis"
       },
-      "104": {
+      {
         "code": "N733",
         "description": "Female acute pelvic peritonitis"
       },
-      "105": {
+      {
         "code": "N739",
         "description": "Female pelvic inflammatory disease, unspecified"
       },
-      "106": {
+      {
         "code": "N912",
         "description": "Amenorrhea, unspecified"
       },
-      "107": {
+      {
         "code": "N920",
         "description": "Excessive and frequent menstruation with regular cycle"
       },
-      "108": {
+      {
         "code": "N921",
         "description": "Excessive and frequent menstruation with irregular cycle"
       },
-      "109": {
+      {
         "code": "N924",
         "description": "Excessive bleeding in the premenopausal period"
       },
-      "110": {
+      {
         "code": "N930",
         "description": "Postcoital and contact bleeding"
       },
-      "111": {
+      {
         "code": "N946",
         "description": "Dysmenorrhea, unspecified"
       },
-      "112": {
+      {
         "code": "R079",
         "description": "Chest pain, unspecified"
       },
-      "113": {
+      {
         "code": "R109",
         "description": "Unspecified abdominal pain"
       },
-      "114": {
+      {
         "code": "R21",
         "description": "Rash and other nonspecific skin eruption"
       },
-      "115": {
+      {
         "code": "R42",
         "description": "Dizziness and giddiness"
       },
-      "116": {
+      {
         "code": "S53449A",
         "description": "Ulnar collateral ligament sprain of unspecified elbow, initial encounter"
       },
-      "117": {
+      {
         "code": "S63519A",
         "description": "Sprain of carpal joint of unspecified wrist, initial encounter"
       },
-      "118": {
+      {
         "code": "S63599A",
         "description": "Other specified sprain of unspecified wrist, initial encounter"
       },
-      "119": {
+      {
         "code": "S638X9A",
         "description": "Sprain of other part of unspecified wrist and hand, initial encounter"
       },
-      "120": {
+      {
         "code": "S93419A",
         "description": "Sprain of calcaneofibular ligament of unspecified ankle, initial encounter"
       },
-      "121": {
+      {
         "code": "S93429A",
         "description": "Sprain of deltoid ligament of unspecified ankle, initial encounter"
       },
-      "122": {
+      {
         "code": "S93439A",
         "description": "Sprain of tibiofibular ligament of unspecified ankle, initial encounter"
       }
-    }
+    ]
   }
 }

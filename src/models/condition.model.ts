@@ -5,6 +5,13 @@ import {MedicalCase} from './medical-case.model';
 export class Condition extends Entity {
   @property({
     type: 'string',
+    id: true,
+    generated: true,
+  })
+  id?: string;
+
+  @property({
+    type: 'string',
     required: true,
   })
   code: string;

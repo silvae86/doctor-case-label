@@ -1,10 +1,10 @@
-import {GyantCrudApplication} from './application';
+import {DoctorCaseLabelApplication} from './application';
 
 export async function migrate(args: string[]) {
   const existingSchema = args.includes('--rebuild') ? 'drop' : 'alter';
   console.log('Migrating schemas (%s existing schema)', existingSchema);
 
-  const app = new GyantCrudApplication();
+  const app = new DoctorCaseLabelApplication();
   await app.boot();
   await app.migrateSchema({existingSchema});
 

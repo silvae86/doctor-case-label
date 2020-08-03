@@ -1,9 +1,9 @@
-import {ApplicationConfig, GyantCrudApplication} from './application';
+import {ApplicationConfig, DoctorCaseLabelApplication} from './application';
 
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new GyantCrudApplication(options);
+  const app = new DoctorCaseLabelApplication(options);
   await app.boot();
   await app.start();
 

@@ -1,4 +1,4 @@
-import {GyantCrudApplication} from '../..';
+import {DoctorCaseLabelApplication} from '../..';
 import {
   createRestAppClient,
   givenHttpServerConfig,
@@ -14,7 +14,7 @@ export async function setupApplication(): Promise<AppWithClient> {
     // port: +process.env.PORT,
   });
 
-  const app = new GyantCrudApplication({
+  const app = new DoctorCaseLabelApplication({
     rest: restConfig,
   });
 
@@ -27,6 +27,6 @@ export async function setupApplication(): Promise<AppWithClient> {
 }
 
 export interface AppWithClient {
-  app: GyantCrudApplication;
+  app: DoctorCaseLabelApplication;
   client: Client;
 }
