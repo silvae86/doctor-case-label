@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="489339fd-79d3-4659-be0a-a0ecf69bff5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/strategies/basic.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasources/mongo-db.datasource.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/datasources/mongo-db.datasource.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/common/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/common/footer.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/common/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/common/header.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/common/includes.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/common/includes.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/labeler/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/labeler/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/strategies/basic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/strategies/basic.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +132,7 @@
       <workItem from="1596387491445" duration="633000" />
       <workItem from="1596397306235" duration="9231000" />
       <workItem from="1596468682435" duration="4449000" />
-      <workItem from="1596475734288" duration="2467000" />
+      <workItem from="1596475734288" duration="3639000" />
     </task>
     <servers />
   </component>
