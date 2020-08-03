@@ -26,6 +26,10 @@ export class ExpressServer {
     // set views folder location
     this.app.set('views', path.resolve(__filename, '../views'));
 
+    // set folder for static files
+    const staticFilesPath = path.resolve(__filename, '../../public');
+    this.app.use(express.static(staticFilesPath));
+
     this.app.use('/api', this.lbApp.requestHandler);
 
     this.app.get('/', this.homeController.index);

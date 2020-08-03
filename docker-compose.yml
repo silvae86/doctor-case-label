@@ -1,8 +1,8 @@
 version: '3.3'
 
 services:
-  doctor-case-label:
-    build: .
+  #doctor-case-label:
+  #  build: .
   mongodb:
     container_name: mongo-doctor-case-label
     image: mongo:3.6.0
@@ -13,7 +13,6 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p92874983724rhqwelrhqweiuryoiqwerhlqwhjeflkawejrp9023475823y4rjhelkjrheiouryi
     volumes:
-      # - ./data/mongo/init:/docker-entrypoint-initdb.d:ro
       - ./volumes/data/mongo:/data/db
     command: mongod --smallfiles --bind_ip_all
     restart: always

@@ -6,16 +6,24 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Labeller</a>
-            </li>
+
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+
+        <%if(!locals || !locals.loggedUser) { %>
+
+        <form method="POST" action="/login" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" name="username" type="text" placeholder="Username" aria-label="Username">
+            <input class="form-control mr-sm-2" name="password" type="password" placeholder="Password" aria-label="Password">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
         </form>
+
+        <% } else { %>
+            <form method="POST" action="/logout" class="form-inline my-2 my-lg-0">
+                <h3>Welcome, <%= locals.loggedUser.firstName %> <%= locals.loggedUser.firstName %>.</h3>
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+            </form>
+        <% } %>%>
     </div>
 </nav>
+<main role="main" class="container">
+

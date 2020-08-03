@@ -2,22 +2,25 @@
 <html lang="en">
 
 <head>
-  <title>doctor-case-label</title>
+  <title>Doctor Case Label</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/x-icon" href="https://loopback.io/favicon.ico">
+
+  <%- include ('common/includes') %>
 </head>
 
 <body>
   <%- include ('common/header') %>
 
-  <% if (locals && !locals.user) { %>
+  <% if (!locals || !locals.loggedUser) { %>
     <h1>Please login using the form at the top of the page</h1>
   <% } else { %>
     <%- include ('labeler/index') %>
   <% } %>
+
   <%- include ('common/footer') %>
 </body>
 
