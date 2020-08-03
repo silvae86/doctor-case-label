@@ -11,11 +11,14 @@
 </head>
 
 <body>
-  <%-include /src/views/common/header.html.ejs %>
+  <%- include ('common/header') %>
 
-  <h1>Doctor Case Labeler</h1>
-
-  <%-include /src/views/common/footer.html.ejs %>
+  <% if (locals && !locals.user) { %>
+    <h1>Please login using the form at the top of the page</h1>
+  <% } else { %>
+    <%- include ('labeler/index') %>
+  <% } %>
+  <%- include ('common/footer') %>
 </body>
 
 </html>

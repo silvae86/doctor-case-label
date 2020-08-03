@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "lb-tsc --copy-resources",
-    "build:watch": "lb-tsc --watch",
+    "build:watch": "lb-tsc --watch --copy-resources",
     "lint": "npm run prettier:check && npm run eslint",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
