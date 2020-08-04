@@ -15,12 +15,14 @@
 <body>
   <%- include ('common/header') %>
 
-  <% if (!locals || !locals.loggedUser) { %>
+  <% if (!locals || !locals.session || !locals.session.loggedUser) { %>
     <div class="jumbotron">
       <h1 class="display-4">Doctor Case Label</h1>
       <p class="lead">Welcome to our doctor case labeling application.</p>
       <hr class="my-4">
       <p>It allows you to label clinical reports, associating them with the corresponding conditions.</p>
+      <p><b>Credentials for Doctor João Silva</b>: username: joao, password: joaopassword</p>
+      <p><b>Demo user credentials for doctor Joe Smith</b>: username: joe, password: joepassword</p>
       <p class="lead">
         <a class="btn btn-primary btn-lg" href="#username-textbox" role="button">Log in to start</a>
       </p>

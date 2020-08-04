@@ -13,6 +13,7 @@ export class Condition extends Entity {
   @property({
     type: 'string',
     required: true,
+    unique: true,
   })
   code: string;
 

@@ -2,7 +2,7 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 class="my-0 mr-md-auto font-weight-normal"><a class="navbar-brand" href="/">Doctor Case Label</a></h5>
 
-        <%if(!locals || !locals.loggedUser) { %>
+        <%if(!locals || !locals.session || !locals.session.loggedUser) { %>
 
             <form method="POST" action="/login" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" id="username-textbox" name="username" type="text" placeholder="Username" aria-label="Username">
@@ -12,7 +12,7 @@
 
         <% } else { %>
             <form method="POST" action="/logout" class="form-inline my-2 my-lg-0">
-                <h3>Welcome, <%= locals.loggedUser.firstName %> <%= locals.loggedUser.firstName %>.</h3>
+                <h5>Welcome, <%= locals.session.loggedUser.firstName %> <%= locals.session.loggedUser.surname %>.</h5>
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
             </form>
         <% } %>%>

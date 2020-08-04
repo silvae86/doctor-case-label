@@ -8,6 +8,7 @@ import {Doctor} from '../../models';
 import {DataObject} from '@loopback/repository/dist/common-types';
 import * as fs from 'fs';
 import {Model} from '@loopback/repository';
+const bcrypt = require('bcrypt');
 
 export async function givenEmptyDatabase() {
   const medicalCaseRepository: MedicalCaseRepository = new MedicalCaseRepository(
@@ -28,7 +29,7 @@ async function getObjectsFromTestData(
   parseFunction: (dataObject: Partial<Model>) => object,
 ) {
   const fileContents = await fs.promises.readFile(
-    '../fixtures/data/example.json',
+    '../../../data/testdata.json',
     {encoding: 'utf8'},
   );
   const json = JSON.parse(fileContents);
@@ -41,10 +42,10 @@ async function getObjectsFromTestData(
 export function givenDoctorData(data?: Partial<Doctor>) {
   return Object.assign(
     {
-      firstName: 'john-',
-      surname: 'doe-doctor',
-      username: 'jonhdoe',
-      password: 'r00t',
+      firstName: 'john',
+      surname: 'doctor',
+      username: 'doctor',
+      password: bcrypt.hashSync('r00t', 10),
     },
     data,
   );

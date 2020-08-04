@@ -9,6 +9,7 @@ const pEvent = require('p-event');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 import {v4 as uuidv4} from 'uuid';
+const bodyParser = require('body-parser');
 
 export {ApplicationConfig};
 
@@ -51,13 +52,20 @@ export class ExpressServer {
     );
 
     this.app.use(function (req: Request, res: Response, next: Function) {
+      res.locals.session = req.session;
+
       res.locals.messages = {
-        success: req.query.message,
+        success: req.query.success,
         error: req.query.error,
       };
 
       next();
     });
+
+    this.app.use(bodyParser.urlencoded({extended: false}));
+
+    // parse application/json
+    this.app.use(bodyParser.json());
 
     this.app.use('/api', this.lbApp.requestHandler);
     this.app.post('/login', this.authController.login);
@@ -71,6 +79,7 @@ export class ExpressServer {
 
   public async start() {
     await this.lbApp.start();
+    await this.lbApp.migrateSchema();
     const port = this.lbApp.restServer.config.port ?? 3000;
     const host = this.lbApp.restServer.config.host ?? '127.0.0.1';
     this.server = this.app.listen(port, host);

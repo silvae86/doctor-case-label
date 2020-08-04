@@ -8,11 +8,15 @@
     "Doctor": [
       {
         "firstName": "João",
-        "surname": "Silva"
+        "surname": "Silva",
+        "password": "joaopassword",
+        "username": "joao"
       },
       {
         "firstName": "Joe",
-        "surname": "Smith"
+        "surname": "Smith",
+        "password": "joepassword",
+        "username": "joe"
       }
     ],
     "MedicalCase": [

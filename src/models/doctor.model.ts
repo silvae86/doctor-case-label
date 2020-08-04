@@ -35,6 +35,7 @@ export class Doctor extends Entity {
   @property({
     type: 'string',
     required: true,
+    unique: true,
   })
   username: string;
 
