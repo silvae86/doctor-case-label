@@ -1,22 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Doctor Case Label</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="https://loopback.io/favicon.ico">
+
+    <%- include ('includes') %>
+</head>
+
+<body>
+
 <header>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><a class="navbar-brand" href="/">Doctor Case Label</a></h5>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Doctor Case Label</a>
 
-        <%if(!locals || !locals.session || !locals.session.loggedUser) { %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <form method="POST" action="/login" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" id="username-textbox" name="username" type="text" placeholder="Username" aria-label="Username">
-                <input class="form-control mr-sm-2" id="password-textbox" name="password" type="password" placeholder="Password" aria-label="Password">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
-            </form>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <%if(locals && locals.session && locals.session.loggedUser) { %>
+                <a class="font-weight-normal" href="/label">Label cases</a>
+            <% } %>
 
-        <% } else { %>
-            <form method="POST" action="/logout" class="form-inline my-2 my-lg-0">
-                <h5>Welcome, <%= locals.session.loggedUser.firstName %> <%= locals.session.loggedUser.surname %>.</h5>
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
-            </form>
-        <% } %>%>
-    </div>
+            <%if(!locals || !locals.session || !locals.session.loggedUser) { %>
+                <form method="POST" action="/login" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" id="username-textbox" name="username" type="text" placeholder="Username" aria-label="Username">
+                    <input class="form-control mr-sm-2" id="password-textbox" name="password" type="password" placeholder="Password" aria-label="Password">
+                    <button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit">Login</button>
+                </form>
+            <% } else { %>
+                <form method="POST" action="/logout" class="form-inline my-2 my-lg-0">
+                    <a class="form-inline">Welcome, <%= locals.session.loggedUser.firstName %>&nbsp;<%= locals.session.loggedUser.surname %>.</a>
+                    <button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+                </form>
+            <% } %>
+
+        </div>
+    </nav>
 </header>
 <main class="container">
     <% if (locals.messages) { %>

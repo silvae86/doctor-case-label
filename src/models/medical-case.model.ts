@@ -23,10 +23,10 @@ export class MedicalCase extends Entity {
   id?: string;
 
   @belongsTo(() => Doctor)
-  doctorWhoLabeledId?: string;
+  doctorWhoLabeledId?: string | undefined;
 
   @belongsTo(() => Condition)
-  conditionId?: string;
+  conditionId?: string | undefined;
 
   constructor(data?: Partial<MedicalCase>) {
     super(data);

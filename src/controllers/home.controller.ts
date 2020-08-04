@@ -7,7 +7,7 @@ import {Request, Response} from 'express';
 export class HomeController {
   constructor() {}
 
-  index(req: Request, res: Response) {
+  static index(req: Request, res: Response) {
     {
       res.render('index', {});
     }

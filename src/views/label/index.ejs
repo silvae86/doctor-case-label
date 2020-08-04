@@ -1,0 +1,35 @@
+<%- include ('../common/header') %>
+
+<script src="/scripts/label/labelService.js"></script>
+<script src="/scripts/label/labelController.js"></script>
+
+
+<div class="container">
+    <div class="form-group" id="labeling-form">
+        <input type="hidden" id="medical-case-id">
+        <div class="row">
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="ehr-textarea">Please Review This Case: </label>
+                    <textarea class="form-control" id="ehr-textarea" style="height: 100%;" rows="20">
+                </textarea>
+                </div>
+
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="condition-select">Select Condition:</label>
+                    <select multiple class="form-control" id="condition-select" style="height: 100%;">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row justify-content-end">
+            <div class="col-sm-12 ">
+                <button class="btn btn-primary mb-2" onclick="LabelController.submitAssociationAndGetNextCase(this)">Next&nbsp;&rightarrow;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ('../common/footer') %>

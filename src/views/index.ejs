@@ -1,38 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Doctor Case Label</title>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/x-icon" href="https://loopback.io/favicon.ico">
-
-  <%- include ('common/includes') %>
-</head>
-
-<body>
-  <%- include ('common/header') %>
-
+<%- include ('common/header') %>
+  <div class="jumbotron">
+    <h1 class="display-4">Doctor Case Label</h1>
+    <p class="lead">Welcome to our doctor case labeling application.</p>
+    <hr class="my-4">
+    <p>It allows you to label clinical reports, associating them with the corresponding conditions.</p>
   <% if (!locals || !locals.session || !locals.session.loggedUser) { %>
-    <div class="jumbotron">
-      <h1 class="display-4">Doctor Case Label</h1>
-      <p class="lead">Welcome to our doctor case labeling application.</p>
-      <hr class="my-4">
-      <p>It allows you to label clinical reports, associating them with the corresponding conditions.</p>
       <p><b>Credentials for Doctor João Silva</b>: username: joao, password: joaopassword</p>
       <p><b>Demo user credentials for doctor Joe Smith</b>: username: joe, password: joepassword</p>
       <p class="lead">
         <a class="btn btn-primary btn-lg" href="#username-textbox" role="button">Log in to start</a>
       </p>
-    </div>
-
   <% } else { %>
-    <%- include ('labeler/index') %>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/label" role="button">Start Labeling!</a>
+      </p>
   <% } %>
-
-  <%- include ('common/footer') %>
-</body>
-
-</html>
+  </div>
+<%- include ('common/footer') %>

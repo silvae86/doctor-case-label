@@ -4,6 +4,7 @@
 
 import {post, get, Request, ResponseObject, RestBindings} from '@loopback/rest';
 import {inject} from '@loopback/core';
+import {Response} from 'express';
 
 /**
  * OpenAPI response for label()
@@ -60,20 +61,9 @@ const LABEL_REQUEST_BODY: ResponseObject = {
 export class LabelController {
   constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
 
-  // Map to `GET /label/next`
-  @get('/label/next', {
-    responses: {
-      '200': LABEL_RESPONSE,
-    },
-    requestBody: {
-      content: LABEL_REQUEST_BODY,
-    },
-  })
-  nextCase(): object {
-    return {
-      result: true,
-      headers: Object.assign({}, this.req.headers),
-    };
+  static async index(req: Request, res: Response) {
+
+    res.render('label/index');
   }
 
   // Map to `POST /label`
@@ -85,7 +75,7 @@ export class LabelController {
       content: LABEL_REQUEST_BODY,
     },
   })
-  label(): object {
+  assignLabel(): object {
     return {
       result: true,
       headers: Object.assign({}, this.req.headers),

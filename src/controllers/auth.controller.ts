@@ -9,7 +9,7 @@ const HttpStatus = require('http-status-codes');
 export class AuthController {
   constructor() {}
 
-  async login(req: Request, res: Response) {
+  static async login(req: Request, res: Response) {
     const backURL = (req.header('Referer') ?? '/').split('?')[0];
 
     if (req.body.username && req.body.password) {
@@ -24,7 +24,7 @@ export class AuthController {
           .status(HttpStatus.OK)
           .redirect(
             `${backURL}?success=${encodeURIComponent(
-              `Welcome, ${loggedDoctor.firstName} ${loggedDoctor.surname}.`
+              `Welcome, ${loggedDoctor.firstName} ${loggedDoctor.surname}.`,
             )}`,
           );
       } else {
@@ -47,9 +47,8 @@ export class AuthController {
     }
   }
 
-  async logout(req: Request, res: Response) {
-    if(req.session)
-      delete req.session;
+  static async logout(req: Request, res: Response) {
+    if (req.session) delete req.session;
     res.redirect('/');
   }
 }

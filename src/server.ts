@@ -9,22 +9,24 @@ const pEvent = require('p-event');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 import {v4 as uuidv4} from 'uuid';
+import {LabelController} from './controllers';
 const bodyParser = require('body-parser');
+const crypto = require('crypto');
 
 export {ApplicationConfig};
+
+const cookieSecret = crypto.randomBytes(64).toString('hex');
+const sessionSecret = crypto.randomBytes(64).toString('hex');
 
 export class ExpressServer {
   public readonly app: express.Application;
   public readonly lbApp: DoctorCaseLabelApplication;
-  public readonly homeController: HomeController;
-  public readonly authController: AuthController;
+  public readonly labelController: LabelController;
   private server?: http.Server;
 
   constructor(options: ApplicationConfig = {}) {
     this.app = express();
     this.lbApp = new DoctorCaseLabelApplication(options);
-    this.homeController = new HomeController();
-    this.authController = new AuthController();
 
     // add ejs rendering middleware
     this.app.engine('html', require('ejs').renderFile);
@@ -38,7 +40,7 @@ export class ExpressServer {
     this.app.use(express.static(staticFilesPath));
 
     // setup session-related middlewares
-    this.app.use(cookieParser());
+    this.app.use(cookieParser(cookieSecret, { httpOnly: true, sameSite: 'None', secure: true}));
     this.app.use(
       session({
         genid: function (req: Request) {
@@ -47,7 +49,7 @@ export class ExpressServer {
         saveUninitialized: true,
         resave: true,
         secret:
-          'asdpf89sudFP8asdçfkjasdfopº8u7a0q983U4Q2IHR3QOI3H2ERJASHFDIUAHDF0928374982Q3ROASDJoioihasiudfhasildufhasdil',
+sessionSecret
       }),
     );
 
@@ -68,9 +70,10 @@ export class ExpressServer {
     this.app.use(bodyParser.json());
 
     this.app.use('/api', this.lbApp.requestHandler);
-    this.app.post('/login', this.authController.login);
-    this.app.post('/logout', this.authController.logout);
-    this.app.get('/', this.homeController.index);
+    this.app.post('/login', AuthController.login);
+    this.app.post('/logout', AuthController.logout);
+    this.app.get('/label', LabelController.index);
+    this.app.get('/', HomeController.index);
   }
 
   async boot() {
