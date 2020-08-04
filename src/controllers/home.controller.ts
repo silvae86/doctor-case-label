@@ -2,18 +2,14 @@
 
 // import {inject} from '@loopback/core';
 
-
 import {Request, Response} from 'express';
 
 export class HomeController {
-  constructor() {
-  }
+  constructor() {}
 
   index(req: Request, res: Response) {
     {
-      res.render("index",
-        {}
-      );
-    };
+      res.render('index', {});
+    }
   }
 }

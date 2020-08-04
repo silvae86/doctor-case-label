@@ -16,7 +16,16 @@
   <%- include ('common/header') %>
 
   <% if (!locals || !locals.loggedUser) { %>
-    <h1>Please login using the form at the top of the page</h1>
+    <div class="jumbotron">
+      <h1 class="display-4">Doctor Case Label</h1>
+      <p class="lead">Welcome to our doctor case labeling application.</p>
+      <hr class="my-4">
+      <p>It allows you to label clinical reports, associating them with the corresponding conditions.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#username-textbox" role="button">Log in to start</a>
+      </p>
+    </div>
+
   <% } else { %>
     <%- include ('labeler/index') %>
   <% } %>

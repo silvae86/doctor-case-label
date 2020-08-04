@@ -2,20 +2,38 @@
 
 // import {inject} from '@loopback/core';
 
-
-import {inject} from '@loopback/core';
-import {SecurityBindings, UserProfile} from '@loopback/security';
-import {authenticate} from '@loopback/authentication';
-import {BASIC_AUTH_STRATEGY_NAME} from '../auth_strategies/basic/basic';
+import {Request, Response} from 'express';
+import {Doctor} from '../models';
+const HttpStatus = require('http-status-codes');
 
 export class AuthController {
-  constructor(    @inject(SecurityBindings.USER, {optional: true})
-                  private user: UserProfile) {}
+  constructor() {}
 
-  // Define your strategy name as a constant so that
-  // it is consistent with the name you provide in the adapter
-  @authenticate(BASIC_AUTH_STRATEGY_NAME)
-  async whoAmI(): Promise<string> {
-    return this.user.id;
+  async login(req: Request, res: Response) {
+    const backURL = (req.header('Referer') ?? '/').split('?')[0];
+
+    const loggedDoctor = await Doctor.verify(
+      req.get('username'),
+      req.get('password'),
+    );
+
+    if (loggedDoctor != null) {
+      if (req.session != null) req.session.loggedUser = loggedDoctor;
+      res
+        .status(HttpStatus.OK)
+        .redirect(
+          `${backURL}?success=${encodeURIComponent(
+            'Welcome, ' + loggedDoctor.firstName + loggedDoctor.surname,
+          )}`,
+        );
+    } else {
+      res
+        .status(HttpStatus.UNAUTHORIZED)
+        .redirect(`${backURL}?error=${encodeURIComponent('Invalid username or password provided')}`);
+    }
+  }
+
+  async logout(req: Request, res: Response) {
+    res.redirect('/');
   }
 }

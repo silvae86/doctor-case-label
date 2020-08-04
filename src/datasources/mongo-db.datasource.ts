@@ -13,7 +13,7 @@ const config = {
     '34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p92874983724rhqwelrhqweiuryoiqwerhlqwhjeflkawejrp9023475823y4rjhelkjrheiouryi',
   database: 'DoctorCaseLabel',
   useNewUrlParser: true,
-  authSource: "admin"
+  authSource: 'admin',
 };
 
 // Observe application's life cycle to disconnect the datasource when

@@ -1,12 +1,12 @@
 <header>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">Doctor Case Label</h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a class="navbar-brand" href="/">Doctor Case Label</a></h5>
 
         <%if(!locals || !locals.loggedUser) { %>
 
-            <form method="POST" action="/api/login" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" name="username" type="text" placeholder="Username" aria-label="Username">
-                <input class="form-control mr-sm-2" name="password" type="password" placeholder="Password" aria-label="Password">
+            <form method="POST" action="/login" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="username-textbox" name="username" type="text" placeholder="Username" aria-label="Username">
+                <input class="form-control mr-sm-2" id="password-textbox" name="password" type="password" placeholder="Password" aria-label="Password">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Login</button>
             </form>
 
@@ -19,4 +19,15 @@
     </div>
 </header>
 <main class="container">
-
+    <% if (locals.messages) { %>
+        <% if (locals.messages.success) { %>
+            <div class="alert alert-success" role="alert">
+                <strong>Success.</strong> <%= locals.messages.success %>
+            </div>
+        <% }%>
+        <% if (locals.messages.error) { %>
+            <div class="alert alert-danger" role="alert">
+                <strong>Error.</strong> <%= locals.messages.error %>
+            </div>
+        <% }%>
+    <% }%>
