@@ -22,6 +22,18 @@ export class Doctor extends Entity {
   })
   id?: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  username: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  password: string;
+
   @hasMany(() => MedicalCase)
   medicalCases?: MedicalCase[];
 

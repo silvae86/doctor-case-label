@@ -1,5 +1,6 @@
 import {BootMixin} from '@loopback/boot';
-import {ApplicationConfig} from '@loopback/core';
+import {AuthenticationBindings} from '@loopback/authentication';
+import {ApplicationConfig, CoreTags} from '@loopback/core';
 import {
   RestExplorerBindings,
   RestExplorerComponent,
@@ -9,6 +10,7 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
+import {basicAuthStrategy} from './auth_strategies/basic/basic';
 
 export {ApplicationConfig};
 
@@ -40,5 +42,13 @@ export class DoctorCaseLabelApplication extends BootMixin(
         nested: true,
       },
     };
+
+    this
+      .bind('authentication.strategies.basicAuthStrategy')
+      .to(basicAuthStrategy)
+      .tag({
+        [CoreTags.EXTENSION_FOR]:
+        AuthenticationBindings.AUTHENTICATION_STRATEGY_EXTENSION_POINT_NAME,
+      });
   }
 }
