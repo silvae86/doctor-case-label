@@ -28,14 +28,17 @@ class LabelController
     if(ehrTextArea != null && labelingForm != null) {
       LabelService.getNextUnlabeledMedicalCase(function(medicalCase){
         ehrTextArea.innerText = medicalCase.ehr;
-        let currentMedicalCaseHiddenInput = document.getElementById("medical-case-id");
-        currentMedicalCaseHiddenInput.parentNode.removeChild(currentMedicalCaseHiddenInput);
+        let currentMedicalCaseHiddenInput = document.querySelector("#labeling-form > #medical-case-id");
 
-        currentMedicalCaseHiddenInput = document.createElement('input');
+        if (currentMedicalCaseHiddenInput === null)
+        {
+          currentMedicalCaseHiddenInput = document.createElement('input');
+          labelingForm.appendChild(currentMedicalCaseHiddenInput);
+        }
+
         currentMedicalCaseHiddenInput.setAttribute("type", "hidden");
-        currentMedicalCaseHiddenInput.setAttribute("value-stored", "medical-case-id");
+        currentMedicalCaseHiddenInput.setAttribute("id", "medical-case-id");
         currentMedicalCaseHiddenInput.setAttribute("value", medicalCase.id);
-        labelingForm.appendChild(currentMedicalCaseHiddenInput);
         callback();
       });
     }
@@ -47,9 +50,9 @@ class LabelController
 
   static submitAssociationAndGetNextCase(button)
   {
-    button.setAttribute("disabled");
+    button.setAttribute("disabled", "");
     try{
-      const currentMedicalCaseHiddenInput = document.querySelector("#labeling-form > input[type='hidden']");
+      const currentMedicalCaseHiddenInput = document.querySelector("#labeling-form > #medical-case-id");
       const currentMedicalCaseID = currentMedicalCaseHiddenInput.getAttribute("value");
       const selectedConditions = document.querySelectorAll("#condition-select > option:checked");
       let selectedConditionID;
@@ -65,13 +68,13 @@ class LabelController
 
       LabelService.associateConditionToCase(currentMedicalCaseID, selectedConditionID, function(result){
         LabelController.getNextMedicalCase(function(result){
-          button.removeAttr("disabled");
+          button.removeAttribute("disabled");
         });
       });
     }
     catch (e){
       alert(e)
-      button.removeAttr("disabled");
+      button.removeAttribute("disabled");
     }
   }
 }
