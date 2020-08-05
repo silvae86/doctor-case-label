@@ -49,7 +49,8 @@ docker-compose build && docker-compose up
         - Only tests the creation of the main page 😱
         - Demonstrates integration with `mocha` 
         - Demonstrates code quality enforcement, as tests do not pass if the lint operation returns any error.
-    - `npm run lint:fix` --> lint and fix code automatically using `eslint`)
+    - `npm run lint:fix`
+        - Checks for code standard consistency and fixes code automatically using `eslint` whenever possible.
 ## Demo Credentials
 
 - Doctor João Silva
