@@ -5,6 +5,7 @@ import {once} from 'events';
 import * as path from 'path';
 import {HomeController} from './controllers/home.controller';
 import {AuthController} from './controllers/auth.controller';
+import {migrate} from './migrate';
 const pEvent = require('p-event');
 const async = require('async');
 const session = require('express-session');
@@ -56,7 +57,7 @@ export class ExpressServer {
         },
         secret: sessionSecret,
         resave: true,
-        saveUninitialized: true
+        saveUninitialized: true,
       }),
     );
 
@@ -76,9 +77,15 @@ export class ExpressServer {
     // parse application/json
     this.app.use(bodyParser.json());
 
-    this.app.get('/medical-cases/label', async.apply(this.requireAuth, MedicalCasesController.index));
+    this.app.get(
+      '/medical-cases/label',
+      async.apply(this.requireAuth, MedicalCasesController.index),
+    );
     this.app.use('/reset', async.apply(this.requireAuth, HomeController.reset));
-    this.app.use('/api', async.apply(this.requireAuth, this.lbApp.requestHandler));
+    this.app.use(
+      '/api',
+      async.apply(this.requireAuth, this.lbApp.requestHandler),
+    );
     this.app.get('/', HomeController.index);
     this.app.post('/login', AuthController.login);
     this.app.post('/logout', AuthController.logout);
@@ -89,13 +96,15 @@ export class ExpressServer {
   // authenticated! This does not handle Accept: application/json requests
   // properly, for example.
   // @see https://loopback.io/doc/en/lb4/Implement-your-own-strategy.html
-  async requireAuth(requestHandler: Function, req: Request, res: Response, next: Function)
-  {
-    if(!req?.session?.loggedUser)
-    {
+  async requireAuth(
+    requestHandler: Function,
+    req: Request,
+    res: Response,
+    next: Function,
+  ) {
+    if (!req?.session?.loggedUser) {
       const backURL = (req.header('Referer') ?? '/').split('?')[0];
-      if(req.accepts())
-      {
+      if (req.accepts()) {
         res
           .status(HttpStatus.UNAUTHORIZED)
           .redirect(
@@ -104,9 +113,7 @@ export class ExpressServer {
             )}`,
           );
       }
-    }
-    else
-      requestHandler(req, res, next);
+    } else requestHandler(req, res, next);
   }
 
   async boot() {
@@ -115,7 +122,7 @@ export class ExpressServer {
 
   public async start() {
     await this.lbApp.start();
-    await this.lbApp.migrateSchema();
+    await migrate([], true);
     const port = this.lbApp.restServer.config.port ?? 3000;
     const host = this.lbApp.restServer.config.host ?? '127.0.0.1';
     this.server = this.app.listen(port, host);

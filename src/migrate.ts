@@ -73,15 +73,12 @@ export async function migrate(args: string[], doNotExit = false) {
   // Connectors usually keep a pool of opened connections,
   // this keeps the process running even after all work is done.
   // We need to exit explicitly.
-  if(!doNotExit)
-    process.exit(0);
+  if (!doNotExit) process.exit(0);
 }
 
-if(process.argv[1].indexOf("migrate") > -1)
-{
+if (process.argv[1].indexOf('migrate') > -1) {
   migrate(process.argv).catch(err => {
     console.error('Cannot migrate database schema', err);
     process.exit(1);
   });
 }
-

@@ -18,25 +18,26 @@ class LabelController {
     }
   }
 
-  static showNoMoreCasesToLabelNotice()
-  {
+  static showNoMoreCasesToLabelNotice() {
     const labelingForm = document.getElementById('labeling-form');
-    if (labelingForm)
-    {
+    if (labelingForm) {
       //
-      document.createElement("div")
-      labelingForm.insertAdjacentHTML('beforebegin', "<div class=\"alert alert-success\" role=\"alert\">\n" +
-        "  No more cases to label\n" +
-        "</div>");
+      document.createElement('div');
+      labelingForm.insertAdjacentHTML(
+        'beforebegin',
+        '<div class="alert alert-success" role="alert">\n' +
+          '  No more cases to label\n' +
+          '</div>',
+      );
 
       // lock controls
       const ehrTextArea = document.getElementById('ehr-textarea');
-      ehrTextArea.innerText = ""
-      ehrTextArea.setAttribute("disabled", "")
+      ehrTextArea.innerText = '';
+      ehrTextArea.setAttribute('disabled', '');
 
       const conditionsSelect = document.getElementById('condition-select');
-      conditionsSelect.innerText = ""
-      conditionsSelect.setAttribute("disabled", "")
+      conditionsSelect.innerText = '';
+      conditionsSelect.setAttribute('disabled', '');
     }
   }
 
@@ -46,12 +47,9 @@ class LabelController {
     const labelingForm = document.getElementById('labeling-form');
     if (ehrTextArea != null && labelingForm != null) {
       LabelService.getNextUnlabeledMedicalCase(function (medicalCase) {
-        if(medicalCase === null)
-        {
-          LabelController.showNoMoreCasesToLabelNotice()
-        }
-        else
-        {
+        if (medicalCase === null) {
+          LabelController.showNoMoreCasesToLabelNotice();
+        } else {
           ehrTextArea.innerText = medicalCase.ehr;
           let currentMedicalCaseHiddenInput = document.querySelector(
             '#labeling-form > #medical-case-id',
@@ -98,9 +96,8 @@ class LabelController {
         selectedConditionID,
         function (result) {
           LabelController.getNextMedicalCase(function (medicalCase) {
-            if(medicalCase === null)
-            {
-              LabelController.showNoMoreCasesToLabelNotice()
+            if (medicalCase === null) {
+              LabelController.showNoMoreCasesToLabelNotice();
             }
 
             button.removeAttribute('disabled');

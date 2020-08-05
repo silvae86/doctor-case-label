@@ -24,5 +24,11 @@ RUN npm run build
 # Bind to all network interfaces so that it can be mapped to the host OS
 ENV HOST=0.0.0.0 PORT=3000
 
+WORKDIR /home/node/app/public
+
+RUN npm install
+
+WORKDIR /home/node/app
+
 EXPOSE ${PORT}
 CMD [ "node", "." ]

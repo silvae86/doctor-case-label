@@ -17,19 +17,15 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
         <a class="navbar-brand" href="/">Doctor Case Label</a>
+        <%if(locals && locals.session && locals.session.loggedUser) { %>
+            <a class="navbar-brand" href="/medical-cases/label">Label cases</a>
+        <% } %>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            
-            <%if(locals && locals.session && locals.session.loggedUser) { %>
-                <div class="justify-content-start">
-                    <a class="font-weight-normal" href="/medical-cases/label">Label cases</a>
-                </div>
-            <% } %>
-
             <%if(!locals || !locals.session || !locals.session.loggedUser) { %>
                 <form method="POST" action="/login" class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" id="username-textbox" name="username" type="text" placeholder="Username" aria-label="Username">

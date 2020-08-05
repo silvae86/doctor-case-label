@@ -17,14 +17,12 @@ export class HomeController {
 
   static async reset(req: Request, res: Response) {
     {
-      await migrate(["--rebuild"], true);
+      await migrate(['--rebuild'], true);
       const backURL = (req.header('Referer') ?? '/').split('?')[0];
       res
         .status(HttpStatus.OK)
         .redirect(
-          `${backURL}?success=${encodeURIComponent(
-            'Database rebuilt',
-          )}`,
+          `${backURL}?success=${encodeURIComponent('Database rebuilt')}`,
         );
     }
   }

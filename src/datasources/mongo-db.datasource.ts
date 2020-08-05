@@ -1,13 +1,18 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
+const mongoDBHost = process.env.MONGODB_HOST
+  ? process.env.MONGODB_HOST
+  : 'localhost';
+const mongoDBPort = process.env.MONGODB_PORT ? process.env.MONGODB_PORT : 27019;
+const mongoDBUrl = `mongodb://admin:34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p92874983724rhqwelrhqweiuryoiqwerhlqwhjeflkawejrp9023475823y4rjhelkjrheiouryi@${mongoDBHost}:${mongoDBPort}/DoctorCaseLabel`;
+
 const config = {
   name: 'MongoDB',
   connector: 'mongodb',
-  url:
-    'mongodb://admin:34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p92874983724rhqwelrhqweiuryoiqwerhlqwhjeflkawejrp9023475823y4rjhelkjrheiouryi@localhost:27019/DoctorCaseLabel',
-  host: 'localhost',
-  port: 27019,
+  url: mongoDBUrl,
+  host: mongoDBHost,
+  port: mongoDBPort,
   user: 'admin',
   password:
     '34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p92874983724rhqwelrhqweiuryoiqwerhlqwhjeflkawejrp9023475823y4rjhelkjrheiouryi',

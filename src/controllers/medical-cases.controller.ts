@@ -13,7 +13,8 @@ import {
   getModelSchemaRef,
   requestBody,
   Request,
-  HttpErrors, RestBindings,
+  HttpErrors,
+  RestBindings,
 } from '@loopback/rest';
 import {Condition, MedicalCase} from '../models';
 import {ConditionRepository, MedicalCaseRepository} from '../repositories';
@@ -111,16 +112,15 @@ export class MedicalCasesController {
     const unlabeledMedicalCase: MedicalCase | null = await this.medicalCaseRepository.findOne(
       {
         where: {
-          conditionId: { eq: undefined }
-        }
-    });
+          conditionId: {eq: undefined},
+        },
+      },
+    );
 
-    if(unlabeledMedicalCase != null)
-    {
+    if (unlabeledMedicalCase != null) {
       // start recording the time a recording was last requested (unix timestamp)
       const session = this.request.session;
-      if(session != null)
-        session.lastLabelingRequestedAt = Date.now();
+      if (session != null) session.lastLabelingRequestedAt = Date.now();
     }
 
     return unlabeledMedicalCase;
@@ -197,7 +197,8 @@ export class MedicalCasesController {
     } else {
       medicalCase.conditionId = condition.id;
       medicalCase.doctorWhoLabeledId = session?.loggedUser.id;
-      medicalCase.milliSecsToLabel = Date.now() - session?.lastLabelingRequestedAt;
+      medicalCase.milliSecsToLabel =
+        Date.now() - session?.lastLabelingRequestedAt;
       await medicalCaseRepository.update(medicalCase);
       return medicalCase;
     }

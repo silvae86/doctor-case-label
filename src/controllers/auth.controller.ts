@@ -48,8 +48,8 @@ export class AuthController {
   }
 
   static async logout(req: Request, res: Response) {
-    return new Promise(function (resolve , reject) {
-      req.session?.destroy(function(){
+    return new Promise(function (resolve, reject) {
+      req.session?.destroy(function () {
         res.redirect('/');
       });
     });

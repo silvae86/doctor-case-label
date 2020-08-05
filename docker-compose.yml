@@ -1,8 +1,17 @@
 version: '3.3'
 
 services:
-  #doctor-case-label:
-  #  build: .
+  doctor-case-label:
+    container_name: doctor-case-label
+    ports:
+      - 3000:3000
+    environment:
+      - MONGODB_HOST=mongo-doctor-case-label
+      - MONGODB_PORT=27017
+    build: .
+    restart: always
+    networks:
+      - doctor-case-label-network
   mongodb:
     container_name: mongo-doctor-case-label
     image: mongo:3.6.0
