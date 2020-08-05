@@ -11,8 +11,7 @@
             <div class="row">
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="ehr-textarea">Please Review This Case: </label>
-                    <textarea class="form-control" id="ehr-textarea" style="height: 100%;" rows="20">
-                </textarea>
+                    <textarea class="form-control" id="ehr-textarea" style="height: 100%;" rows="20"></textarea>
                 </div>
 
                 <div class="form-group col-md-6 col-sm-12">
@@ -22,7 +21,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 mt-5">
+                <div class="col-sm-6 mt-5">
+                    <form action = "/reset" method="post">
+                        <button class="btn btn-danger mb-2 float-left" aria-describedby="reset-help-text">Reset Database</button>
+                        <small id="reset-help-text" class="form-text text-muted float-left ml-2">Only for debugging and to show that the system uses migrations.</small>
+                    </form>
+                </div>
+                <div class="col-sm-6 mt-5">
                     <button class="btn btn-primary mb-2 float-right" onclick="LabelController.submitAssociationAndGetNextCase(this)">Next&nbsp;&rightarrow;</button>
                 </div>
             </div>

@@ -48,7 +48,10 @@ export class AuthController {
   }
 
   static async logout(req: Request, res: Response) {
-    if (req.session) delete req.session;
-    res.redirect('/');
+    return new Promise(function (resolve , reject) {
+      req.session?.destroy(function(){
+        res.redirect('/');
+      });
+    });
   }
 }

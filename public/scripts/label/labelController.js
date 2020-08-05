@@ -23,10 +23,20 @@ class LabelController {
     const labelingForm = document.getElementById('labeling-form');
     if (labelingForm)
     {
+      //
       document.createElement("div")
       labelingForm.insertAdjacentHTML('beforebegin', "<div class=\"alert alert-success\" role=\"alert\">\n" +
         "  No more cases to label\n" +
         "</div>");
+
+      // lock controls
+      const ehrTextArea = document.getElementById('ehr-textarea');
+      ehrTextArea.innerText = ""
+      ehrTextArea.setAttribute("disabled", "")
+
+      const conditionsSelect = document.getElementById('condition-select');
+      conditionsSelect.innerText = ""
+      conditionsSelect.setAttribute("disabled", "")
     }
   }
 

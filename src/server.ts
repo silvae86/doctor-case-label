@@ -6,12 +6,14 @@ import * as path from 'path';
 import {HomeController} from './controllers/home.controller';
 import {AuthController} from './controllers/auth.controller';
 const pEvent = require('p-event');
+const async = require('async');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 import {v4 as uuidv4} from 'uuid';
 import {MedicalCasesController} from './controllers';
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
+const HttpStatus = require('http-status-codes');
 
 export {ApplicationConfig};
 
@@ -52,9 +54,9 @@ export class ExpressServer {
         genid: function (req: Request) {
           return uuidv4(); // use UUIDs for session IDs
         },
-        saveUninitialized: true,
-        resave: true,
         secret: sessionSecret,
+        resave: true,
+        saveUninitialized: true
       }),
     );
 
@@ -74,11 +76,37 @@ export class ExpressServer {
     // parse application/json
     this.app.use(bodyParser.json());
 
-    this.app.use('/api', this.lbApp.requestHandler);
+    this.app.get('/medical-cases/label', async.apply(this.requireAuth, MedicalCasesController.index));
+    this.app.use('/reset', async.apply(this.requireAuth, HomeController.reset));
+    this.app.use('/api', async.apply(this.requireAuth, this.lbApp.requestHandler));
+    this.app.get('/', HomeController.index);
     this.app.post('/login', AuthController.login);
     this.app.post('/logout', AuthController.logout);
-    this.app.get('/medical-cases/label', MedicalCasesController.index);
-    this.app.get('/', HomeController.index);
+  }
+
+  // this should be implemented with an authentication strategy in Loopback,
+  // which would read the Express session to make sure that the user is
+  // authenticated! This does not handle Accept: application/json requests
+  // properly, for example.
+  // @see https://loopback.io/doc/en/lb4/Implement-your-own-strategy.html
+  async requireAuth(requestHandler: Function, req: Request, res: Response, next: Function)
+  {
+    if(!req?.session?.loggedUser)
+    {
+      const backURL = (req.header('Referer') ?? '/').split('?')[0];
+      if(req.accepts())
+      {
+        res
+          .status(HttpStatus.UNAUTHORIZED)
+          .redirect(
+            `${backURL}?error=${encodeURIComponent(
+              'User is not authenticated',
+            )}`,
+          );
+      }
+    }
+    else
+      requestHandler(req, res, next);
   }
 
   async boot() {

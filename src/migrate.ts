@@ -23,7 +23,7 @@ async function getObjectsFromTestData(key: string) {
   return allRecords;
 }
 
-export async function migrate(args: string[]) {
+export async function migrate(args: string[], doNotExit = false) {
   const existingSchema = args.includes('--rebuild') ? 'drop' : 'alter';
   console.log('Migrating schemas (%s existing schema)', existingSchema);
 
@@ -73,10 +73,15 @@ export async function migrate(args: string[]) {
   // Connectors usually keep a pool of opened connections,
   // this keeps the process running even after all work is done.
   // We need to exit explicitly.
-  process.exit(0);
+  if(!doNotExit)
+    process.exit(0);
 }
 
-migrate(process.argv).catch(err => {
-  console.error('Cannot migrate database schema', err);
-  process.exit(1);
-});
+if(process.argv[1].indexOf("migrate") > -1)
+{
+  migrate(process.argv).catch(err => {
+    console.error('Cannot migrate database schema', err);
+    process.exit(1);
+  });
+}
+

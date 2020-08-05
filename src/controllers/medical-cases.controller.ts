@@ -13,16 +13,17 @@ import {
   getModelSchemaRef,
   requestBody,
   Request,
-  HttpErrors,
+  HttpErrors, RestBindings,
 } from '@loopback/rest';
 import {Condition, MedicalCase} from '../models';
 import {ConditionRepository, MedicalCaseRepository} from '../repositories';
-import {inject} from '@loopback/core';
+import {inject} from '@loopback/context';
 import {Response} from 'express';
 import {MongoDbDataSource} from '../datasources';
 
 export class MedicalCasesController {
   constructor(
+    @inject(RestBindings.Http.REQUEST) public request: Request,
     @repository(MedicalCaseRepository)
     public medicalCaseRepository: MedicalCaseRepository,
   ) {}
@@ -113,6 +114,15 @@ export class MedicalCasesController {
           conditionId: { eq: undefined }
         }
     });
+
+    if(unlabeledMedicalCase != null)
+    {
+      // start recording the time a recording was last requested (unix timestamp)
+      const session = this.request.session;
+      if(session != null)
+        session.lastLabelingRequestedAt = Date.now();
+    }
+
     return unlabeledMedicalCase;
   }
 
@@ -163,6 +173,9 @@ export class MedicalCasesController {
     @param.filter(MedicalCase, {exclude: 'where'})
     filter?: FilterExcludingWhere<Condition>,
   ): Promise<MedicalCase | object> {
+    // will never be undefined because we only allow authenticated requests at this point.
+    const session = this.request.session;
+
     const medicalCaseRepository: MedicalCaseRepository = new MedicalCaseRepository(
       new MongoDbDataSource(),
     );
@@ -183,6 +196,8 @@ export class MedicalCasesController {
       throw new HttpErrors.NotFound('Invalid condition id');
     } else {
       medicalCase.conditionId = condition.id;
+      medicalCase.doctorWhoLabeledId = session?.loggedUser.id;
+      medicalCase.milliSecsToLabel = Date.now() - session?.lastLabelingRequestedAt;
       await medicalCaseRepository.update(medicalCase);
       return medicalCase;
     }
