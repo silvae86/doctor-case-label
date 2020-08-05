@@ -46,7 +46,7 @@ docker-compose build && docker-compose up
     
 - Code-related tasks
     - `npm run test` 
-        - Only tests the creation of the main page 😱, 
+        - Only tests the creation of the main page 😱
         - Demonstrates integration with `mocha` 
         - Demonstrates code quality enforcement, as tests do not pass if the lint operation returns any error.
     - `npm run lint:fix` --> lint and fix code automatically using `eslint`)
