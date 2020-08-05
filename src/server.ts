@@ -9,7 +9,7 @@ const pEvent = require('p-event');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 import {v4 as uuidv4} from 'uuid';
-import {LabelController} from './controllers';
+import {MedicalCasesController} from './controllers';
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
 
@@ -21,7 +21,7 @@ const sessionSecret = crypto.randomBytes(64).toString('hex');
 export class ExpressServer {
   public readonly app: express.Application;
   public readonly lbApp: DoctorCaseLabelApplication;
-  public readonly labelController: LabelController;
+  public readonly medicalCasesController: MedicalCasesController;
   private server?: http.Server;
 
   constructor(options: ApplicationConfig = {}) {
@@ -40,7 +40,13 @@ export class ExpressServer {
     this.app.use(express.static(staticFilesPath));
 
     // setup session-related middlewares
-    this.app.use(cookieParser(cookieSecret, { httpOnly: true, sameSite: 'None', secure: true}));
+    this.app.use(
+      cookieParser(cookieSecret, {
+        httpOnly: true,
+        sameSite: 'None',
+        secure: true,
+      }),
+    );
     this.app.use(
       session({
         genid: function (req: Request) {
@@ -48,8 +54,7 @@ export class ExpressServer {
         },
         saveUninitialized: true,
         resave: true,
-        secret:
-sessionSecret
+        secret: sessionSecret,
       }),
     );
 
@@ -72,7 +77,7 @@ sessionSecret
     this.app.use('/api', this.lbApp.requestHandler);
     this.app.post('/login', AuthController.login);
     this.app.post('/logout', AuthController.logout);
-    this.app.get('/label', LabelController.index);
+    this.app.get('/medical-cases/label', MedicalCasesController.index);
     this.app.get('/', HomeController.index);
   }
 

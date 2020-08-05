@@ -2,6 +2,7 @@ import {
   Count,
   CountSchema,
   Filter,
+  FilterExcludingWhere,
   repository,
   Where,
 } from '@loopback/repository';
@@ -11,14 +12,19 @@ import {
   get,
   getModelSchemaRef,
   requestBody,
+  Request,
+  HttpErrors,
 } from '@loopback/rest';
-import {MedicalCase} from '../models';
-import {MedicalCaseRepository} from '../repositories';
+import {Condition, MedicalCase} from '../models';
+import {ConditionRepository, MedicalCaseRepository} from '../repositories';
+import {inject} from '@loopback/core';
+import {Response} from 'express';
+import {MongoDbDataSource} from '../datasources';
 
 export class MedicalCasesController {
   constructor(
     @repository(MedicalCaseRepository)
-    public medicalCaseRepository : MedicalCaseRepository,
+    public medicalCaseRepository: MedicalCaseRepository,
   ) {}
 
   @post('/medical-cases', {
@@ -88,7 +94,9 @@ export class MedicalCasesController {
           'application/json': {
             content: {
               'application/json': {
-                schema: getModelSchemaRef(MedicalCase, {includeRelations: true}),
+                schema: getModelSchemaRef(MedicalCase, {
+                  includeRelations: true,
+                }),
               },
             },
           },
@@ -99,6 +107,84 @@ export class MedicalCasesController {
   async findNextUnlabeled(
     @param.filter(MedicalCase) filter?: Filter<MedicalCase>,
   ): Promise<MedicalCase | null> {
-    return this.medicalCaseRepository.findOne({where: {doctorWhoLabeledId: undefined}});
+    const unlabeledMedicalCase: MedicalCase | null = await this.medicalCaseRepository.findOne(
+      {
+        where: {
+          conditionId: { eq: undefined }
+        }
+    });
+    return unlabeledMedicalCase;
+  }
+
+  static async index(req: Request, res: Response) {
+    res.render('medical-cases/label');
+  }
+
+  // Map to `POST /label`
+  @post('/medical-cases/{caseId}/label/{conditionId}', {
+    summary: 'Labels a medical case with a certain condition',
+    responses: {
+      '200': {
+        description: 'Modified MedicalCase model instance',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(MedicalCase, {includeRelations: true}),
+          },
+        },
+      },
+      '404': {
+        description: 'MedicalCase not found',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'string',
+              title: 'MedicalCase not found response',
+              properties: {
+                result: {type: 'boolean'},
+                date: {type: 'string'},
+                url: {type: 'string'},
+                headers: {
+                  type: 'object',
+                  properties: {
+                    'Content-Type': {type: 'string'},
+                  },
+                  additionalProperties: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+  async assignLabel(
+    @param.path.string('caseId') caseId: string,
+    @param.path.string('conditionId') conditionId: string,
+    @param.filter(MedicalCase, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Condition>,
+  ): Promise<MedicalCase | object> {
+    const medicalCaseRepository: MedicalCaseRepository = new MedicalCaseRepository(
+      new MongoDbDataSource(),
+    );
+    const medicalCase: MedicalCase = await medicalCaseRepository.findById(
+      caseId,
+    );
+
+    const conditionRepository: ConditionRepository = new ConditionRepository(
+      new MongoDbDataSource(),
+    );
+    const condition: Condition = await conditionRepository.findById(
+      conditionId,
+    );
+
+    if (medicalCase == null) {
+      throw new HttpErrors.NotFound('Invalid Medical Case id');
+    } else if (condition == null) {
+      throw new HttpErrors.NotFound('Invalid condition id');
+    } else {
+      medicalCase.conditionId = condition.id;
+      await medicalCaseRepository.update(medicalCase);
+      return medicalCase;
+    }
   }
 }

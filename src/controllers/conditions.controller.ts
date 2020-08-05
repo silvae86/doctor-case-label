@@ -22,7 +22,7 @@ import {ConditionRepository} from '../repositories';
 export class ConditionsController {
   constructor(
     @repository(ConditionRepository)
-    public conditionRepository : ConditionRepository,
+    public conditionRepository: ConditionRepository,
   ) {}
 
   @post('/conditions', {
@@ -120,7 +120,8 @@ export class ConditionsController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Condition, {exclude: 'where'}) filter?: FilterExcludingWhere<Condition>
+    @param.filter(Condition, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Condition>,
   ): Promise<Condition> {
     return this.conditionRepository.findById(id, filter);
   }
