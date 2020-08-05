@@ -1,13 +1,13 @@
-import {Client} from '@loopback/testlab';
+const request = require('supertest');
 import {setupApplication} from './test-helper';
 import {ExpressServer} from '../../server';
 
 describe('HomePage', () => {
   let app: ExpressServer;
-  let client: Client;
 
   before('setupApplication', async () => {
-    (app = await setupApplication());
+    app = await setupApplication();
+    return;
   });
 
   after(async () => {
@@ -15,7 +15,7 @@ describe('HomePage', () => {
   });
 
   it('exposes a default home page', async () => {
-    await client
+    await request(app.server)
       .get('/')
       .expect(200)
       .expect('Content-Type', /text\/html/);

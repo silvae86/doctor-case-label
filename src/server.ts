@@ -25,7 +25,7 @@ export class ExpressServer {
   public readonly app: express.Application;
   public readonly lbApp: DoctorCaseLabelApplication;
   public readonly medicalCasesController: MedicalCasesController;
-  private server?: http.Server;
+  public server?: http.Server;
 
   constructor(options: ApplicationConfig = {}) {
     this.app = express();

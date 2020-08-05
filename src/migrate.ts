@@ -76,7 +76,10 @@ export async function migrate(args: string[], doNotExit = false) {
   if (!doNotExit) process.exit(0);
 }
 
-if (process.argv[1].indexOf('migrate') > -1) {
+if (
+  process.argv[1].indexOf('migrate') > -1 ||
+  process.argv[1].indexOf('mocha') > -1
+) {
   migrate(process.argv).catch(err => {
     console.error('Cannot migrate database schema', err);
     process.exit(1);

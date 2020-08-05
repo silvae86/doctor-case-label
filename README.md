@@ -16,6 +16,8 @@ A simple app for doctors to label medical cases with a specific condition.
 
 ```bash
 # install NodeJS 10 (I suggest using NVM)
+nvm install 10
+nvm use 10
 git clone https://github.com/silvae86/doctor-case-label.git
 cd doctor-case-label
 # to start MongoDB container in Docker (alternatively, run MongoDB 3.6 on 127.0.0.1:27019)
@@ -43,8 +45,11 @@ docker-compose build && docker-compose up
     - To re-create everything, press the red button at the bottom of the labeling UI.
     
 - Code-related tasks
-    - `npm run test` (only tests the creation of the main page 😱, just to demonstrate integration with `mocha`)
-    - `npm run lint:fix` (lint and fix code automatically using `eslint`)
+    - `npm run test` 
+        - Only tests the creation of the main page 😱, 
+        - Demonstrates integration with `mocha` 
+        - Demonstrates code quality enforcement, as tests do not pass if the lint operation returns any error.
+    - `npm run lint:fix` --> lint and fix code automatically using `eslint`)
 ## Demo Credentials
 
 - Doctor João Silva
