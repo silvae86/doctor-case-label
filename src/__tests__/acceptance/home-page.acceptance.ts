@@ -1,13 +1,13 @@
 import {Client} from '@loopback/testlab';
-import {DoctorCaseLabelApplication} from '../..';
 import {setupApplication} from './test-helper';
+import {ExpressServer} from '../../server';
 
 describe('HomePage', () => {
-  let app: DoctorCaseLabelApplication;
+  let app: ExpressServer;
   let client: Client;
 
   before('setupApplication', async () => {
-    ({app, client} = await setupApplication());
+    (app = await setupApplication());
   });
 
   after(async () => {

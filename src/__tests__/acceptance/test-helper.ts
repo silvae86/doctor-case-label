@@ -1,32 +1,18 @@
 import {DoctorCaseLabelApplication} from '../..';
 import {
-  createRestAppClient,
-  givenHttpServerConfig,
   Client,
 } from '@loopback/testlab';
+import {ExpressServer} from '../../server';
 
-export async function setupApplication(): Promise<AppWithClient> {
-  const restConfig = givenHttpServerConfig({
-    // Customize the server configuration here.
-    // Empty values (undefined, '') will be ignored by the helper.
-    //
-    // host: process.env.HOST,
-    // port: +process.env.PORT,
-  });
+export async function setupApplication(): Promise<ExpressServer> {
 
-  const app = new DoctorCaseLabelApplication({
-    rest: restConfig,
+  const app = new ExpressServer({
   });
 
   await app.boot();
   await app.start();
 
-  const client = createRestAppClient(app);
+  return app;
 
-  return {app, client};
 }
 
-export interface AppWithClient {
-  app: DoctorCaseLabelApplication;
-  client: Client;
-}

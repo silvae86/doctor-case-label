@@ -41,7 +41,7 @@ docker-compose build && docker-compose up
     - For the api.json file (OpenAPI 3.0), , access your browser at `http://127.0.0.1:3000/api/explorer`
     
 - Code-related tasks
-    - `npm run test` (only tests the creation of the main page 😱)
+    - `npm run test` (only tests the creation of the main page 😱, just to demonstrate integration with `mocha`)
     - `npm run lint:fix` (lint and fix code automatically using `eslint`)
 ## Demo Credentials
 
